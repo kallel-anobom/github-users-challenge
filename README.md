@@ -4,7 +4,7 @@
 
 ## Demo
 
-- Heroku: https://reactreposearch.herokuapp.com/
+- Netlify: https://glistening-creponne-da9673.netlify.app/
 
 ## Setup
 
