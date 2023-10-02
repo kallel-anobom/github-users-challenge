@@ -1,28 +1,36 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+import Header from "./Components/Layout/Header";
+import Footer from "./Components/Layout/Footer";
+import Alert from "./Components/Layout/Alert";
 
-import Home from "./Pages/Home";
-import Profile from "./Pages/Profile";
-import NotFound from "./Pages/NotFound";
+import Home from "./Components/Pages/Home";
+import User from "./Components/Users/User";
+import NotFound from "./Components/Pages/NotFound";
+
+import GithubState from "./Context/Github/State";
+import AlertState from "./Context/Alert/State";
 
 function App() {
   return (
     <>
-      <div className="flex flex-col justify-between h-screen">
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/404" element={<NotFound />} />
-            <Route path="/:username" element={<Profile />} />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </Router>
-      </div>
+      <GithubState>
+        <AlertState>
+          <div className="flex flex-col justify-between h-screen">
+            <Router>
+              <Header />
+              <Alert />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/:username" element={<User />} />
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </Router>
+          </div>
+        </AlertState>
+      </GithubState>
     </>
   );
 }

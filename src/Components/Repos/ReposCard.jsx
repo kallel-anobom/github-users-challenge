@@ -1,32 +1,26 @@
-const RepoCard = ({
-  liveDemo,
-  name,
-  description,
-  topics,
-  htmlUrl,
-  language,
-}) => {
+
+const RepoCard = ({ repo }) => {
   return (
     <>
       <div
         className={`transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 ${
-          language === "JavaScript"
+          repo.language === "JavaScript"
             ? "bg-yellow-500"
-            : language === "SCSS"
+            : repo.language === "SCSS"
             ? "bg-purple-600"
-            : language === "HTML"
+            : repo.language === "HTML"
             ? "bg-red-600"
-            : language === "CSS"
+            : repo.language === "CSS"
             ? "bg-pink-500"
-            : language === "Vue"
+            : repo.language === "Vue"
             ? "bg-green-500"
-            : language === "Ruby"
+            : repo.language === "Ruby"
             ? "bg-red-900"
-            : language === "Python"
+            : repo.language === "Python"
             ? "bg-yellow-400"
-            : language === "Java"
+            : repo.language === "Java"
             ? "bg-orange-900"
-            : language === "Shell"
+            : repo.language === "Shell"
             ? "bg-green-500"
             : "bg-blue-500"
         } text-white rounded mb-10 flex-col md:flex-row space-y-4 md:space-y-0`}
@@ -37,14 +31,14 @@ const RepoCard = ({
         <div className={`w-10 h-1 bg-white  absolute -left-10 z-0`} />
         <div className="flex-auto">
           <h1 className="text-xl font-bold">
-            {name}
+            {repo.name}
             <span className="badge text-blue-500 bg-white border-2 border-blue-500 ml-1">
-              {language ? language : "Readme"}
+              {repo.language ? repo.language : "Readme"}
             </span>
           </h1>
-          <h3 className="my-2">{description}</h3>
+          <h3 className="my-2">{repo.description}</h3>
           <h4>
-            {topics.map((topic) => (
+            {repo.topics.map((topic) => (
               <span key={topic} className="mr-2 badge-xs badge p-2">
                 {topic}
               </span>
@@ -53,19 +47,11 @@ const RepoCard = ({
         </div>
 
         <a
-          href={`${htmlUrl}`}
+          href={`${repo.html_url}`}
           className="text-center text-black border-2 border-black  capitalize hover:text-white btn-md btn-ghost btn"
         >
           View Repo
         </a>
-        {liveDemo && (
-          <a
-            href={`${liveDemo}`}
-            className="text-center text-black border-2 border-black capitalize hover:text-white btn-md btn-ghost btn md:ml-3"
-          >
-            Live Demo
-          </a>
-        )}
       </div>
     </>
   );
